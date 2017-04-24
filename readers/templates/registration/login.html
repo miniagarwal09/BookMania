@@ -1,0 +1,33 @@
+
+{% extends 'readers/base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Login{% endblock %}
+
+{% block body %}
+    <div class="main panel col-lg-offset-2 col-lg-8 form-group">
+    <div class="col-lg-offset-4 col-lg-8">
+          <h2>Login</h2>
+          <form method="post">
+            {% csrf_token %}
+          <table>
+            {% for element in form %}
+                <tr>
+                    <td>
+                        {{ element.label }}
+                    </td>
+                    <td>
+                        {{ element|attr:"class:form-control" }}
+                    </td>
+                </tr>
+              {% endfor %}
+          <tr>
+              <td>
+            <button type="submit" class="btn btn-primary">Login</button>
+              </td>
+          </tr>
+          </table>
+          </form>
+    </div>
+    </div>
+{% endblock %}

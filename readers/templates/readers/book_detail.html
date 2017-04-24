@@ -1,0 +1,83 @@
+    {% extends "readers/base.html" %}
+    {% block body %}
+        <script  type="text/javascript">
+        function moreinfo() {
+        element=document.getElementById("moreinfo");
+        more=document.getElementById("more");
+        if(element.innerHTML=="") {
+            element.innerHTML="<b>ISDN:</b> {{ book.isbn }}<br><b>Added on: </b>{{book.added_on}}<br><b>Publisher:</b> {{ book.publisher }}<br><b>Published on:</b> {{ book.published_on }}";
+            more.innerHTML="..less"
+
+        }
+        else {
+            element.innerHTML="";
+            more.innerHTML="more.."
+        }
+
+    }
+        </script>
+
+        <div class="main panel col-lg-10 col-lg-offset-1">
+        <div class="row">
+        <div class="col-lg-4 col-lg-offset-4 ">
+            <center>
+             <img src="{{ book.cover.url }}" class="img-circle" height="150px" width="150px"><br>
+                <h1>{{ book.book_name }}</h1>
+                <h4>{{ book.author }}</h4>
+                <h5><b>Rating:</b></h5>
+                <h5><b>Overall Rating:</b></h5>
+                <div id="moreinfo"></div>
+                <a id="more" onclick=moreinfo() >more..</a>
+
+            </center>
+        </div>
+        </div>
+            <div class="row">
+                <div class="" >
+            <b>About:</b> {{ book.synopsis }}
+                </div>
+            </div>
+        </div>
+        <div class="panel col-lg-10 col-lg-offset-1">
+        {% if user.is_authenticated %}
+            {% if book_review_by_user %}
+                        <h2>Your Review</h2>
+                <table>
+                <tr>
+                    <td rowspan="3"><img src="{{ book_review_by_user.reader.reader_profile_picture.url}}" alt="Your pic" height="100" width="100" class="img-circle"></td>
+                </tr>
+                <tr>
+                    <th>{{ book_review_by_user.reader.user.first_name }}</th>
+                </tr>
+                <tr>
+                               <td>{{ book_review_by_user.review }}</td>
+                </tr>
+                </table>
+                {% else %}
+                <a href="{% url "readers:text_review" book_id=book.isbn %}">Post a Review</a>
+            {% endif %}
+            {% else %}
+                <h3>Sign in or Sign up to post a Review</h3>
+        {% endif %}
+        </div>
+         <div class="panel col-lg-10 col-lg-offset-1">
+        {% if book_reviews %}
+        <h3>All Reviews</h3>
+        {% for review in book_reviews %}
+            <table>
+                <tr>
+                    <td rowspan="3"><img src="{{ review.reader.reader_profile_picture.url}}" alt="Your pic" height="100" width="100" class="img-circle"></td>
+                </tr>
+                <tr>
+                    <th>{{ review.reader.user.first_name }}</th>
+                </tr>
+                <tr>
+                               <td>{{ review.review }}</td>
+                </tr>
+            </table>
+        {% endfor %}
+        {% else %}
+            <h4>No Reviews Posted on this book</h4>
+        {% endif %}
+        </div>
+{% endblock %}

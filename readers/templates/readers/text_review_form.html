@@ -1,0 +1,32 @@
+{% extends "readers/base.html"%}
+{% load widget_tweaks %}
+{% block title %}
+    Add  TextReview
+{% endblock %}
+{% block body %}
+    <div class="main panel col-lg-offset-2 col-lg-8 form-group">
+        <div class="col-lg-offset-4 col-lg-8">
+        <h2>Add Your Review here!</h2>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table>
+            {% for element in form %}
+                <tr>
+                    <td>
+                        {{ element.label }}
+                    </td>
+                    <td>
+                        {{ element|attr:"class:form-control" }}
+                    </td>
+                </tr>
+              {% endfor %}
+          <tr>
+              <td>
+            <button type="submit" class="btn btn-primary" value="post">Post</button>
+              </td>
+          </tr>
+          </table>
+            </form>
+        </div>
+    </div>
+{% endblock %}

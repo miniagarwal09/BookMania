@@ -1,0 +1,55 @@
+{% extends "readers/base.html"%}
+{% block body %}
+    <div class="main panel col-lg-8 col-lg-offset-2 form-group">
+    <form action="{% url "readers:signup" %}" method="POST" class="form-controls">
+        {% csrf_token %}
+        <table class="col-lg-6 col-lg-offset-3">
+                <tr>
+                <th>
+                    <label for="firstname">
+                    First Name:
+                    </label>
+                </th>
+                <td><input type="text" name="firstname" id="firstname" value="{{ first_name }}" class="form-control"></td><td class="error-style">{{ error.error_first_name }}{{ user_exists }}</td>
+                </tr>
+                <tr>
+                    <th><label for="lastname">
+                            Last Name:
+                        </label>
+                    </th>
+                <td><input type="text"name="lastname" id="lastname" value="{{ last_name }}" class="form-control"></td><td class="error-style">{{ error.error_last_name }}</td>
+                </tr>
+                <tr>
+                    <th><label for="email">
+                        Email:
+                        </label>
+                    </th>
+                <td><input type="email"name="email" id="email" value="{{ email }}" class="form-control"></td><td class="error-style">{{ error.error_email }}</td>
+                </tr>
+                <tr>
+                    <th><label for="password">
+                        Password:
+                        </label>
+                    </th>
+                <td><input type="password"name="password" id="password" class="form-control"></td><td class="error-style">{{ error.error_password}}</td>
+                </tr>
+                <tr>
+                    <th>
+                        <label for="confirmpassword">
+                        Confirm Password:
+                            </label>
+                    </th>
+                <td><input type="password" name="confirmpassword" id="confirmpassword" class="form-control"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Sign Up" class="btn btn-primary form-control" >
+                    </td>
+                </tr>
+
+            </table>
+                </form>
+
+    </div>
+
+{% endblock %}
