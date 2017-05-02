@@ -82,11 +82,11 @@ WSGI_APPLICATION = 'untitled1.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'bookmania',
-        'HOST':'127.0.0.1',
+        'NAME': 'bookMania',
+        'HOST':'BookMania.mysql.pythonanywhere-services.com',
         'PORT':'3306',
         'USER':'root',
-        'PASSWORD':''
+        'PASSWORD':'09deeksha'
     }
 }
 
