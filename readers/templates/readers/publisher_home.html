@@ -1,0 +1,16 @@
+{% extends "readers/base.html"%}
+{% block body %}
+    <div class="main panel">
+    <h1>Books published by You!</h1>
+    <h2>You Joined on {{ user.publisher.joined_on }}</h2>
+    {% for book in published_books %}
+        <div class="panel main">
+                <a href="{% url "readers:book_detail" book.isbn %}"> {{book.book_name }}</a>
+                {{book.published_on}}
+
+        </div>
+
+        {% endfor %}
+    </div>
+
+{% endblock %}

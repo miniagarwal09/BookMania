@@ -1,0 +1,77 @@
+{% extends "readers/base.html"%}
+{% block body %}
+    <div class="main panel col-lg-8 col-lg-offset-2 form-group">
+    <form action="{% url "readers:signup_publisher" %}" method="POST" class="form-controls">
+        {% csrf_token %}
+        <h1>Sign Up as a publisher to Add a Book</h1>
+        <table class="col-lg-6 col-lg-offset-3">
+                <tr>
+                <th>
+                    <label for="firstname">
+                    First Name:
+                    </label>
+                </th>
+                <td><input type="text" name="firstname" id="firstname" value="{{ first_name }}" class="form-control"></td><td class="error-style">{{ error.error_first_name }}{{ user_exists }}</td>
+                </tr>
+                <tr>
+                    <th><label for="lastname">
+                            Last Name:
+                        </label>
+                    </th>
+                <td><input type="text" name="lastname" id="lastname" value="{{ last_name }}" class="form-control"></td><td class="error-style">{{ error.error_last_name }}</td>
+                </tr>
+                <tr>
+                    <th><label for="email">
+                        Email:
+                        </label>
+                    </th>
+                <td><input type="email" name="email" id="email" value="{{ email }}" class="form-control"></td><td class="error-style">{{ error.error_email }}</td>
+                </tr>
+                <tr>
+                    <th><label for="password">
+                        Password:
+                        </label>
+                    </th>
+                <td><input type="password" name="password" id="password" class="form-control"></td><td class="error-style">{{ error.error_password}}</td>
+                </tr>
+                <tr>
+                    <th>
+                        <label for="confirmpassword">
+                        Confirm Password:
+                            </label>
+                    </th>
+                <td><input type="password" name="confirmpassword" id="confirmpassword" class="form-control"></td>
+                </tr>
+
+            <tr>
+                    <th>
+                        <label for="publicationname">
+                        Publication Name:
+                            </label>
+                    </th>
+                <td><input type="text" name="publicationname" id="publicationname" class="form-control" value="{{ publicationname }}"></td>
+                <td class="error-style">{{ error.error_pub_name}}</td>
+            <tr>
+                    <th>
+                        <label for="country">
+                        Country:
+                            </label>
+                    </th>
+                <td><input type="text" name="country" id="country" class="form-control" value="{{ country }}"></td>
+                </tr>
+                <tr>
+                </tr>
+
+                            <tr>
+                    <td>
+                        <input type="submit" value="Sign Up" class="btn btn-primary form-control" >
+                    </td>
+                </tr>
+
+
+            </table>
+                </form>
+
+    </div>
+
+{% endblock %}
