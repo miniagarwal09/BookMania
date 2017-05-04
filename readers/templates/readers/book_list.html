@@ -2,6 +2,7 @@
 {% block body %}
     <div class="main panel">
     {% if books %}
+        <h1>Books in {{ genre.genre_name }}</h1>
         <table>
         {% for book in books %}
             <tr>
